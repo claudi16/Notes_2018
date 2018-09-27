@@ -1,0 +1,6 @@
+Go down the list of constrains. Parent contstraint transform first then rotate
+Add attribute down the list
+
+Right Display/Show inputs/turn off non-keyable. W0 means the first weight
+Left Display/Show outputs/turn off non-keyable.
+Follow translate to W0.

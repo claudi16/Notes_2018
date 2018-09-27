@@ -1,0 +1,10 @@
+MEL/PYTHON Command Reference
+
+Bottom Right with {;} is the MEL/Python script editor
+
+Help -> You can find the commands (MEL commands ref)
+Ctrl + Enter runs the line
+
+Create sphere, copy polySphere line and copy down into the MEL window.
+Select the entire script to keep it from disappearing when you run the code
+-name "Base_Geo";

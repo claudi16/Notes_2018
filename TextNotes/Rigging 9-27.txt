@@ -1,0 +1,60 @@
+-Create IK system
+-Clear out joint orients in last joint
+-Go back into elbow and wrist joint and make sure to zero out rotation
+-Base, PV, IK. Match all transforms of PV. Never freeze group. Only freeze ctrl
+-Lock and hide scale and rotate for base and PV. only lock and hide scale for IK. Parent IK handle underneath IK ctrl
+-Point constraint base skeleton and base ctrl.
+Once the distance between a shoulder and wrist exceeds the total length of a joint chain, stretch
+Jnt1+Jnt2 = Length
+Distance = space between first and last jnt
+Distance>Length -> stretch
+Length x scalar = distance or totalLength. (the scalar will be something you can dynamically change)
+3.5 x S = 7
+S = 2.
+
+Meaning, ***Scalar = Distance(or totalLength)/Length***
+
+Node editor-
+Create multiply/divide node. Rename it ((jointname)_Length_MD)
+Duplicate it again for the other joint you're calculating. Rename it appropriately.
+Store translate values inside respective input XY or Z inside node.
+In chanel box -> edit -> settings -> change precision -> 6. This will show 6 decimal points and make your numbers more accurate
+Create plusMinusAverage node. Doesn't show data until you plug something into it. So pull the output of the joint into the input of the plustMinusAverage node.
+Rename ((jointname)_Length_PMA
+
+Node editor->Display->connection style to clean up node editor
+Create 2 locators. These will be used to measure distance between controls and/or joints. Place them into their own group. Place them into Deformers group.
+Snap locator to base CTRL (not the joint!). select base ctrl and the locator and create a point constraint.
+Do this again but for the IK ctrl at the end of the joint chain
+
+now create a distanceBetween node. make sure to use the locators' SHAPE not the transform! Open it up, use the World Position output. Drag World Position into Point1. Do the same for the 2nd node and put it into Point2.
+Rename the distanceBetween node as ((jointname)_Distance_DB)
+
+create a new multiply/divide node. Rename ((jointname)_Stretch_Scalar_MD) Input the distance node into Input1. Input the PMA node (Output 1D) into Input2. Change from multiplication to divide.
+
+BTW you don't need to copy-paste. You CAN directly connect nodes.Just open whatever output and drag it into the input of another node.
+
+Bring Joint 2 and 3 back into the node editor. Get the output of your scalar lengty and put it into the transform of the jnt node.
+
+Remember that if distance is > length, use scalar.
+So create a condition node(which is basically an if statement)
+Drag the distance in to be the first term. Drag the length to be the 2nd term. Drag in scalar into color if true channel. 
+
+Take the outColor of the stretch condition and replace the connection that's going into the joint nodes.
+
+Create a new node called the blendColors node. Rename as ((jointName)_Stretch_BC)
+take the output of the condition node. (outColorR) and input into Color1R into the blendColors node. In the Color 2R, set it to 1.
+
+Now on the IK ctrl, add an attribute. Call it Stretchy. Make it a float, give a min of 0 and max of 1. Default 0.
+Add that ctrl into the graphy. Take the attribute stretchy and connect to the blender attribute of the blendColor node.
+Now take the output of the blendColor node and connect it back into the input of both the Scaled Length joints.
+
+Add 2 more attributes onto the IK ctrl. One called Length01 and Length02. Make them floats. Min 0, Max 1, Default 1.
+Connect Length01 output into the first MD node created and put into Input 2. Do the same for Length2 into Input 2 of the other MD node.
+
+Finally, create another attribute onto the transform ctrl. Called GlobalScale. Set as a float. Min 0. Default 1. No Max.
+Connect that attribute directly into the world node (The absolute top group. In this case it's the Stretchy_Arm group)
+Open connection editor. Transform ctrl on the left, Stretchy_Arm group into the right. Attach Global scale onto the XYZ scale. 
+
+Now back inside the node editor, create another MD node. Call it ((jointname)_Global_Scale_MD. Attach globalscale from the transform ctrl node into the Input2 of the GlobalScale_MD node. Take the output of the PMA and also drag it into the L_Arm_Global_Scale_MD. Take the output of the globalscale and put it into the ScalarMD Input2X.
+

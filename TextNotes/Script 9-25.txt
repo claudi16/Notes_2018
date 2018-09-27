@@ -1,0 +1,9 @@
+Changing colors of controls
+
+global proc ColorControls ($color (string/value) $ctrl)
+enable overrides (set attribute)
+set color on $ctrl to be $color
+
+Save MEL file in Documents -> Maya -> scripts and you'll be able to reference
+
+nurbscircle, attributes, object display, drawing overrides, enable overrides, change color

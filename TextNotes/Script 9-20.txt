@@ -1,0 +1,15 @@
+select obj
+Create locator{
+$var = `ls -selection`;
+Find combined center (gives you an x,y,z coordinate. Average transforms, group/centerPivot, create cluster/findcenter)
+-duplicate all objects, combine, 
+create locator (-spacelocator)
+move locator to match center - (xform)
+}
+
+(notepad++, language -> enable mel)
+MAKE SURE TO PUT -q (query) inside the xform -boundingBox
+
+xmax+xmin/2, ymax+ymin/2, zmax+zmin/2 <- finds the center of a bindingBox
+xform commands to lok at - boundingBox, scalePivot, rotatePivot, rotate order, pivots, centerPivots, zeroTransformPivot
+

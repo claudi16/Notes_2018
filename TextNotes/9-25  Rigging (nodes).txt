@@ -1,0 +1,13 @@
+Create a locator at the base of a control chain. Rename as Master Ctrl.
+Constrain Master Ctrl and work down with respective trans/rot
+Make constraints in the connection editor
+Now you can constrain the master control to the rest of the system
+
+
+Node editor, Open shader menu -> utilities
+Shift + middle click drag onto another node opens the connection editor.
+
+-MultiplyDivide. ***Attribute editor (on the right). You can play with operation. Good for on/off switches & amplitude animation (i.e. making a fish flip its gills faster/slower)
+-plusMinusAverage. 
+-condition (if/else statement in a node)
+-distanceBetween. Have to have 2 other objects. 

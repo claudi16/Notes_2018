@@ -1,0 +1,21 @@
+Connection Editor
+Windows -> general Editors -> connection editor
+or Channel Box -> Edit -> connection editor
+each attribute is a type (i.e. variable, int, string, etc.) 
+therefore you cannot connect 2 different types together. (there
+are some exceptions though. Like string to int)
+
+options -> attribute order -> alphabetical (helpful)
+select output on the left side, and select whatever you want to associate
+it to on the right side. You're limited to your output but NOT your input
+
+Output (something going into a node). Input (what you get out of it)
+
+Node Editor
+Window -> node editor
+Output -> In Mesh
+the reverse node is good for IK/FK switches. As long as you're
+outputting into the same you inputted, it should work
+Drover -> direct connection to FK and also to a reverse node
+Hotkeys 123 to open nodes
+
