@@ -1,0 +1,20 @@
+-enabled
+-manage
+
+using values.
+create string and return whatever you need.
+You have to call the name and tell it what you'd like to edit.
+floatField -edit -maxValue 20 $myFloatField;
+floatField -q -value $myFloatField; <- This quearies the values
+
+must make a runtime queary.
+
+UI
+-window
+-layout
+-controls (int,float,buttons)
+
+Generator Code(argument list controls, numbOfDupes, RangeValues...)
+
+floatFieldGrp
+
