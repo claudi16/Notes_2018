@@ -1,0 +1,28 @@
+Spline
+
+Includes joints, curve, control joints, and ctrls.
+Ctrls constrain control joints. control joints skin cluster curve. Spline IK solver curve to joint.
+
+Creating a straight chain of joints.
+Select all, channel control, move joint orients to left and make them keyable.
+Make rotations all 0.
+Now using the translate x, you can elongate the whole chain.
+
+Under skeleton -> IK Spline Handle Tool
+To apply, it's the same thing. Apply first and last joint. That'll create a curve. The higher the number of spans, the more nurb thingies (CVs). Best to custom make it.
+
+CV curve is like an anchor point. It'll essentially make a frame for a curve.
+EP curve creates a specific point the curve will follow
+
+Best way to make a Spline curve is to make it manually. Move joint into geo. Now make an EP curve snapping to each joint down the chain. Now, turn of auto create curve in the IK Spline Handle Tool. Select tip and end joints. Now also create an IK handle. select Group -> tip -> curve. 
+
+Skinning skins to CVs. You can't skin to EPs.
+
+Now create a new set of joints (these are control joints). THESE WILL NOT BE IN A HIERARCHY.
+From there, you select the new control joints, the curve, bind skin options (turn off remove unused influences and make sure the bind to: option is Selected Joints)
+Play with the dropoff rate until you see a nice curve (not an arch) when you move the control joints.
+
+You can't actually pain skin weights on a curve. Instead you have to go to the component editor, weighted deformer, select the control vertexes, and actually change the values. BLEH. 
+Way easier to just play with the dropoff rate. Btw the offset is automatically added into the channel box. The Roll option also rotates the whole thing at once. Twist pins the first joint and twists the rest of the chain.
+
+
