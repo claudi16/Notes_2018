@@ -9,8 +9,9 @@ Make rotations all 0.
 Now using the translate x, you can elongate the whole chain.
 
 Under skeleton -> IK Spline Handle Tool
-To apply, it's the same thing. Apply first and last joint. That'll create a curve. The higher the number of spans, the more nurb thingies (CVs). Best to custom make it.
+To apply, it's the same thing. Apply first and last joint. That'll create a curve. The higher the number of spans, the more CV points. Best to custom make it.
 
+Curve -> tools
 CV curve is like an anchor point. It'll essentially make a frame for a curve.
 EP curve creates a specific point the curve will follow
 
@@ -18,11 +19,33 @@ Best way to make a Spline curve is to make it manually. Move joint into geo. Now
 
 Skinning skins to CVs. You can't skin to EPs.
 
-Now create a new set of joints (these are control joints). THESE WILL NOT BE IN A HIERARCHY.
+Now create a new set of joints (these are control joints). THESE WILL NOT BE IN A HIERARCHY. Space them out evenly, make the larger so you can see them. (You don't technically need to space them out evenly. But it looks nice, so...) 
 From there, you select the new control joints, the curve, bind skin options (turn off remove unused influences and make sure the bind to: option is Selected Joints)
 Play with the dropoff rate until you see a nice curve (not an arch) when you move the control joints.
 
 You can't actually pain skin weights on a curve. Instead you have to go to the component editor, weighted deformer, select the control vertexes, and actually change the values. BLEH. 
 Way easier to just play with the dropoff rate. Btw the offset is automatically added into the channel box. The Roll option also rotates the whole thing at once. Twist pins the first joint and twists the rest of the chain.
+
+Create controls on the new control joints. MAKE IT BROKEN FK. (constrain constrain to grp, grp to constrain, etc. down the controls. Translate and rotate separate. You remember. Make switch on all) Now constrain controls to control joints.
+WHEN ANIMATING, YOU MOVE THE GROUP NOT THE CONTROLS!!!
+
+Max influcences are basically how many joints are being affected past a curve.
+Select spline, component editor, change slider around. Also make sure to lock joints so you're only working on two at a time like when you're weight painting.
+
+Remember that scalar = distance/chain length. 
+In this case it'll be scalar = arcLength/chainLength(default ArcLength)
+
+node called curveinfo that'll tell you the distance of all joints.
+
+-Open nurb editor and create a curveinfo. Call it something like Snake IK Spline CurveInfo
+drop in the splie curve and use the Shape. Not the Orig. Open connection editor and connect worldSpace on left to inputCurve on right.
+-Now you have the arc length. yay. 
+-Create multiply node. Snake_IK_Spline_Stretchy_Scalar_MD. Put ArcLength into Input 1X. Paste input 1x into input 2x. Set it to DIVIDE.
+-Create condition node. Snake_IK_Spline_Stretchy_Cond. "if arc length > chain length, give scalar value". Drag Arc Length from Curve into into first term. Second term is the chain length. so just copy paste. Change to greater than. Output scalar X into Color if True R. If false, output value of 1
+-Create blend color node. Snake_IK_Spine_Stretchy_BC Take outColor of Condition node and put into Color 1 Color 1R in BC. Change Color 2R to be 1.
+-(will normally have the stretchy attribute on the transform but in this example it's on the ctrl.)
+-use Snake_IK_Spline_FK_01_Ctrl and use the group. Take the new stretchy attribute and drag that into the Blender input of the BC node.
+-Now make another multiply node. Snake_IK_Spline_Joint_Scale_MD. select one of the joints in the chain (not the control joints). Find what the length is and make it the input 1. Drag the output of BC into the Input 2.
+-Select ALL of the things in the joint chain. Now you can either manually connect to every single joint in the chain (translateX). or make one connection and get the line of code. Now python.
 
 
