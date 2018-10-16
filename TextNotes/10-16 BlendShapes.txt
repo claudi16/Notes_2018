@@ -1,0 +1,17 @@
+Blend shapes
+
+Blend shapes is essentially animating verts
+DON'T FREEZE GEOMETRY
+-duplicate geometry (name new dupe as something like Squash).
+-pay attention to the deformation of the shape not the transformation. So, moving xyz doesn't do anything. But selecting the verts and moving xyz does.
+-duplicate original geometry again. Rename as something like Stretch. Now deform as a stretch.
+-Now you can apply them as targets. Select the target shapes (both Squash & Stretch). Select the original geometry. In the deform window -> blend shape options. Apply it
+Now in the original target you should see in the input a slider.
+-blend shapes move in a linear motion. So say, when you animate an eye blinking, since an eye is round, you'd need to create "inbetweens" which is essentially multiple blend shapes to make it appear that it's curving over the eye. In reality it's just a bunch of blends in a row.
+-You can overload a blend shape by going into the blendShape tab and playing around with weights
+-Blend shapes build upon other blend shapes
+-deform -> nonlinear -> offset.
+-deform -> blendshape edit -> add. deform -> nonlinear -> sinwave.
+Nonlinear deformers affect the whole object. To have it only affect the skin, you can pull up the deform -> (paint weights submenu) blend shape.
+
+-DON'T DELETE HISTORY. Unless the deformation is not active.
