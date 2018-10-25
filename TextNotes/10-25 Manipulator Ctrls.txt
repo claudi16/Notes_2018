@@ -1,0 +1,39 @@
+Simple blend shapes
+create circle ctrl. one transform and one COG. Group them individually like usual. Go ahead and place the COG in the main pivot point.
+create a joint and position where the cog is.
+Freeze transformation on all the controls. bind the skin to the jnt
+Now everything is built and we can start adding fun non-linear things. Like bend.
+
+Making a bend deformer
+Make a curve. Insert knot, you can make fun designs. once a bend is added to it, delete history. Freeze it.
+Add Bend attribute. Add HighBound attribute. Min is 0, no max. LowBound attribute. Max is 0. default at -1.
+Connection window -> bend goes into curvature. HighBound and LowBound go into their respective high/low bound .w.
+Now the bend deformer can be manipulated from the ctrl.
+Now you can make a handler for squash. NEVER SCALE A HANDLE IN ONE DIRECTION! ONLY SCALE GLOBALLY!
+
+Squash
+EP curve, change curve degree to be 1 linear. You can do the same thing where you set up a bunch of different attributes. Orrrrr
+Hook up the translation to the squash :D You'll still need a high/low bound attribute on it though. 
+Clayton added another attribute called Position Min 0, Max 1, Default 0.5. (or whatever the squash is default at) 
+Connect them all into the connection editor. Reload on the right the squash DEFORMER. Not the handle.
+
+You can edit the ease in-ease out of the squash (factor) in the graph editor. Just change it to become linear.
+Now lets say you wanna have the object continue stretching. open graph editor. Go to edit, and select infinity. By default it's set to a linear value so the pre and post infinity values will stay the same.
+select the first key. open curves menu and change the pre infinity to constant. Now select the orange squiggle. Plateau tangent i think it was.
+Now it'll stretch forever c:
+
+you can parent and scale the deformers to the COG so everything follows
+
+Now to have the object squash AND bend-
+-Make sure to set up the order of operations. Go to inputs (white box symbol at the top with the left pointing arrow on the left. All inputs) and middle click drag the squash before the bend. 
+-Relationship editor. Similar to connection editor but specifically for deformers.
+
+Jiggle Deformer
+-There has to be a key deformation in order for it to work.
+-Use bend curve. Open graph editor and change pre and post infinity to oscelate.
+-Now apply a jiggle deformer. select verts you want to affect. deform -> jiggle -> jiggle deformer
+-paint the jiggle weights. Lets say you just wanna have jiggle at the very tip. Flood the end and smooth it a lil.
+-jiggle must be put in order last
+-hit play lol
+
+

@@ -1,0 +1,6 @@
+Select object -> deform -> cluster.
+Deform ->paint weights ->cluster. Instead of listing joints, it lists clusters.
+Select geometry and you can select one cluster at a time in the list.
+Move clusters before you move the geometry
+
+Make sure to change the input order. Middle click drag.

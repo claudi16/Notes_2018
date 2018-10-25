@@ -1,0 +1,15 @@
+: = {} colons are braces. EVERYTHING IN AN IF/FOR/WHILE statement MUST BE INDENTED THE SAME AMOUNT. 4 spaces is the norm. I.e. if(blahblahblah):
+No longer need to put colons at the end of lines
+no longer need to write out string, int, etc. Can simply assign a number or string or whatever to a variable.
+by default the python engine is in Maya, but you have to call it.
+
+import maya.cmds.ls basically means you're going to refer to maya.cmds as ls for the rest of the code.
+bools must be capitalized. "True".
+
+import maya.cmds as cmds
+
+sels = cmds.ls(sl = True)
+
+for sel in sels:
+        cmds.connectAttr('Snake_IK_Spline_Jnt_Scale_MD.outputX', '%s.translateX' % sel, f=True)
+
