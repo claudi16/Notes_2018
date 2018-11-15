@@ -1,0 +1,50 @@
+Classes in Python
+
+all classes hold attributes (like variables) and methods (functions)
+i.e. Class: Animal, Attributes: "color", "limbs?", etc. Methods: moving(), eating(), attack()
+
+Classes can inherit attributes to save space and different classes can have different attributes
+Classes are essentially templates. And you use them to create objects.
+
+So in the case of having a "Dog" class. with the attributes of "best friend", "derpiness", etc. and the methods of play(), and fetch(), friendlevel()
+lets say there's a dog called pete. The way you would create this object and assign the class in python is
+
+pete = Dog()
+
+yay
+
+Now we use the dot operator "." to access different things in the class.
+i.e. pete.friendlevel()
+
+Now lets make a different dog
+charley = Dog()
+charley.color
+
+Depending on how these are defined, these attributes and methods will be different. Using the dot attribute will ONLY access that specific class for that specific object.
+
+You can change attributes of a class after you make an object or before, doesn't matter
+
+pete = Dog(color, age, bread, name, owner)
+Dog("blue", 13, "dalmation", "pete", "me")
+
+Get used to writing "self." before a variable. This makes it so other classes inheriting the initial class keeps that initial attribute.
+Making arguments of the class keep from having to hard code variables.
+
+In each class, you need to make a function called __init__ this initializes the class. Any method or function defined within the class should ALSO contain self as an argument
+
+i.e. *******
+class Animal():
+	def __init__(self, colour, name):
+		self.colour = colour
+		self.name = name
+
+Anytime you refer to a variable you've defined with self. as a prefix (which will probably be all of them), when you refer to that variable you need to have that self. still in there
+
+CLASSES ARE UPPERCASE. FUNCTIONS MUST BE LOWER CASE. RATHER THAN CAMEL CASE, YOU SHOULD DO AN UNDERSCORE (this part doesn't suuuper matter.)
+
+
+
+
+
+
+

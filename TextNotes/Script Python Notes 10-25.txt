@@ -13,3 +13,15 @@ sels = cmds.ls(sl = True)
 for sel in sels:
         cmds.connectAttr('Snake_IK_Spline_Jnt_Scale_MD.outputX', '%s.translateX' % sel, f=True)
 
+to make a "proc"/function in python
+
+def NAMEOFFUNCTION ():
+	make sure to tab.
+
+i.e.
+def CreateLoc():
+	sels = cmds.ls(sl=True)
+
+running a command in a return -
+	dups = cmds.duplicate(sels, rr=True)
+
