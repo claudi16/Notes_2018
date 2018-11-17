@@ -15,7 +15,7 @@ Curve -> tools
 CV curve is like an anchor point. It'll essentially make a frame for a curve.
 EP curve creates a specific point the curve will follow
 
-Best way to make a Spline curve is to make it manually. Move joint into geo. Now make an EP curve snapping to each joint down the chain. Now, turn of auto create curve in the IK Spline Handle Tool. Select tip and end joints. Now also create an IK handle. select Group -> tip -> curve. 
+Best way to make a Spline curve is to make it manually. Move joint into geo. Now make an EP curve snapping to each joint down the chain. Now, TURN OFF auto create curve in the IK Spline Handle Tool. Select tip and end joints. Now also create an IK handle. select Group -> tip -> curve. 
 
 Skinning skins to CVs. You can't skin to EPs.
 
