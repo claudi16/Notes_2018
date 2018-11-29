@@ -13,6 +13,10 @@ sels = cmds.ls(sl = True)
 for sel in sels:
         cmds.connectAttr('Snake_IK_Spline_Jnt_Scale_MD.outputX', '%s.translateX' % sel, f=True)
 
+import maya.cmds as cmds
+obj = cmds.polySphere( r=1, sx=20, ax=[0,1,0], cuv=2, ch=1)[0]
+cmds.move(3, 5, 6, obj, ws=True)
+
 to make a "proc"/function in python
 
 def NAMEOFFUNCTION ():
